@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="/pizza.css">
+<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+    <body>
+ <form name="form" method="post" action="pizza.php">
+    <fieldset>
+    <h2>Quantity</h2>
+    <input type="number" name ="Largepizza" placeholder="Large Pizza" min="0" Value="0" id="Large"/><label> 1 Large Pizza = Ksh.1000</label><br/>
+    <input type="number" name="Mediumpizza" placeholder="Medium Pizza" min="0" Value="0" id="Medium"/><label> 1 Medium Pizza = Ksh.700</label><br/>
+    <input type="number" name="Smallpizza" placeholder="Small Pizza" min="0" Value="0" id="Small"/><label> 1 Small Pizza = Ksh.400</label><br/><br/>
+        <h2>Extra Topping</h2>
+        <input type="radio" name="toppings" value="Meattoppings"
+        checked="checked" id="toppings"/> Meat toppings<br/>
+        <input type="radio" name="toppings" value="Vegetabletoppings" id="toppings"/>
+        Vegetable toppings<br/>
+        <input type="radio" name="toppings" value="Notoppings"checked="checked" id="toppings"/>
+        No toppings<br/>
+
+            <p>Feed a hungry child today?
+            <br />
+            <input type="checkbox" id="check" name="service"
+            value="donations" checked="checked" id="Donate"/> Donate  Ksh 200
+            </p>
+     <input type="submit"  name="submit" value="Order Now" id="submit" />
+    </fieldset>
+</form>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#submit").on('click',
+  function (b) {
+    b.preventDefault();
+
+    var Large_pizza = $("#Large").val();
+    var Medium_pizza = $("#Medium").val();
+    var Small_pizza = $("#Small").val();
+    var Donate = $("#Donate").val();
+    var toppings = $("input[name='toppings']:checked").val();
+
+    if(Large_pizza=="")||Large_pizza=="")||Large_pizza==""){
+    alert("fill in all values");
+    return false;
+  }
+  $.POST("pizza.php",
+{
+  Large:large_pizza,
+  Small:Smallpizza,
+  Medium:Mediumpizza,
+  toppings:toppings,
+  donate:donate,
+  submit: 1
+},function(result){
+  alert(result)
+}
+);
+  });
+
+  });
+</script>
+</body>
+</html>
